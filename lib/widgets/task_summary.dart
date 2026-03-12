@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'count_up.dart';
 
-class TasksSummary extends StatelessWidget {
+class TasksSummary extends StatefulWidget {
   const TasksSummary({
     super.key,
     required this.taskCount,
@@ -15,6 +15,23 @@ class TasksSummary extends StatelessWidget {
   final double habitCount;
 
   @override
+  State<TasksSummary> createState() => _TasksSummaryState();
+}
+
+class _TasksSummaryState extends State<TasksSummary> {
+  DateTime now = DateTime.now();
+
+  greeting() {
+    if (now.hour < 12) {
+      return "Good morning,";
+    } else if (now.hour < 18) {
+      return "Good afternoon,";
+    } else {
+      return "Good evening,";
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 32.0, right: 32.0, top: 200.0),
@@ -24,14 +41,14 @@ class TasksSummary extends StatelessWidget {
           Row(
             children: [
               Text(
-                "Good morning,",
+                greeting(),
                 style: TextStyle(color: Colors.white60, fontSize: 24),
               ),
               SizedBox(width: 12),
               Image.asset('assets/img/ethiel.png', width: 28),
               SizedBox(width: 8),
               Text(
-                "Ethiel.",
+                "Giffar.",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
@@ -50,18 +67,18 @@ class TasksSummary extends StatelessWidget {
               ),
               children: [
                 WidgetSpan(
-                  alignment: PlaceholderAlignment.top,
+                  alignment: PlaceholderAlignment.middle,
                   child: CountUpText(
                     emoji: "📅",
-                    value: meetingCount,
+                    value: widget.meetingCount,
                     label: "meetings",
                   ),
                 ),
                 WidgetSpan(
-                  alignment: PlaceholderAlignment.top,
+                  alignment: PlaceholderAlignment.middle,
                   child: CountUpText(
                     emoji: "✅",
-                    value: taskCount,
+                    value: widget.taskCount,
                     label: "tasks ",
                   ),
                 ),
@@ -70,10 +87,10 @@ class TasksSummary extends StatelessWidget {
                   style: TextStyle(color: Colors.white60, fontSize: 24),
                 ),
                 WidgetSpan(
-                  alignment: PlaceholderAlignment.top,
+                  alignment: PlaceholderAlignment.middle,
                   child: CountUpText(
                     emoji: "🥋",
-                    value: habitCount,
+                    value: widget.habitCount,
                     label: "habits ",
                   ),
                 ),
@@ -81,12 +98,20 @@ class TasksSummary extends StatelessWidget {
                   text: "today. You're ",
                   style: TextStyle(color: Colors.white60, fontSize: 24),
                 ),
-                TextSpan(
-                  text: "mostly free ",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+                // TextSpan(
+                //   text: "mostly free ",
+                //   style: TextStyle(
+                //     color: Colors.white,
+                //     fontSize: 24,
+                //     fontWeight: FontWeight.bold,
+                //   ),
+                // ),
+                WidgetSpan(
+                  alignment: PlaceholderAlignment.middle,
+                  child: CountUpText(
+                    emoji: "",
+                    value: null,
+                    label: "mostly free  ",
                   ),
                 ),
                 TextSpan(

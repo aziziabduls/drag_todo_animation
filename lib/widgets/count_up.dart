@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class CountUpText extends StatelessWidget {
   final String emoji;
-  final double value;
+  final double? value;
   final String label;
 
   const CountUpText({
     super.key,
     required this.emoji,
-    required this.value,
+    this.value,
     required this.label,
   });
 
@@ -29,10 +29,10 @@ class CountUpText extends StatelessWidget {
           width: 4,
         ),
         SizedBox(
-          height: 23,
+          // height: 23,
           child: Text(
             softWrap: true,
-            "${value.round()}",
+            "${value?.round() ?? ''}",
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.bold,

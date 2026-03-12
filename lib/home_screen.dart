@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'widgets/drag_handle.dart';
-import 'widgets/health_summary.dart';
 import 'widgets/task_summary.dart';
 import 'widgets/task_tile.dart';
-import 'widgets/top_heaser.dart';
+import 'widgets/top_header.dart';
 
-const minimumDragSize = 0.43;
+const minimumDragSize = 0.53;
 const maximumDragSize = 1.0;
 
 class HomeScreen extends StatefulWidget {
@@ -76,12 +75,12 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TasksSummary(taskCount: 3, meetingCount: 2, habitCount: 1),
+              TasksSummary(taskCount: 2, meetingCount: 2, habitCount: 1),
               const SizedBox(height: 24),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 28),
-                child: const HealthSummary(),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 28),
+              //   child: const HealthSummary(),
+              // ),
             ],
           ),
         ),
@@ -96,11 +95,17 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(40),
+                  ),
                 ),
                 child: ListView.builder(
                   physics: BouncingScrollPhysics(),
                   controller: scrollController,
+                  padding: EdgeInsets.only(
+                    top: isExpanded ? 50 : 20,
+                    bottom: 100,
+                  ),
                   itemCount: tasks.length + 1,
                   itemBuilder: (context, index) {
                     if (index == 0) {

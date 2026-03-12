@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DragHandle extends StatelessWidget {
   const DragHandle({
     super.key,
-  
+
     required this.isVisible,
   });
 
